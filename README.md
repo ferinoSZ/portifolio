@@ -58,33 +58,6 @@ portifolio/
 ├── specs/                # Especificação, plano, tarefas e checklist de validação
 └── README.md
 ```
-
-## Como visualizar
-
-### Opção 1: abrir o arquivo direto (mais simples)
-
-Dê duplo clique em `index.html`. O site usa apenas HTML, CSS e JavaScript locais, então funciona por `file://` sem build nem servidor.
-
-### Opção 2: servidor local com Python
-
-Na raiz do projeto:
-
-```bash
-python -m http.server 8000
-```
-
-Depois acesse http://localhost:8000 no navegador.
-
-### Opção 3: servidor local com Node.js
-
-Na raiz do projeto:
-
-```bash
-npx serve .
-```
-
-Depois acesse a URL exibida no terminal.
-
 ## Validação rápida
 
 Antes de publicar, conferir:
