@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AcademIA - Sistema de perguntas e respostas sobre PDFs de regulamentos e editais com busca semântica, reranking cross-encoder e validação anti-alucinação. 100% local."
+    />
+    <title>Processamento de PDFs com RAG | Wesley Ferino</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/responsive.css" />
+  </head>
+  <body>
+    <!-- Cabeçalho e Navegação -->
+    <header class="header">
+      <div class="container">
+        <nav class="nav" aria-label="Navegação principal">
+          <a href="../../index.html" class="nav-logo">Wesley Ferino</a>
+
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Abrir menu de navegação"
+          >
+            <span class="nav-toggle-icon" aria-hidden="true">☰</span>
+          </button>
+
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item">
+              <a href="../../index.html#inicio" class="nav-link">Início</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../index.html#sobre" class="nav-link">Sobre</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../index.html#projetos" class="nav-link">Projetos</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../index.html#contato" class="nav-link">Contato</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+      <!-- Seção Detalhe do Projeto -->
+      <section
+        id="projeto-rag"
+        class="project-detail"
+        aria-labelledby="projeto-rag-titulo"
+      >
+        <div class="container">
+          <header class="detail-header">
+            <h1 class="detail-title" id="projeto-rag-titulo">
+              Processamento de PDFs com RAG
+            </h1>
+
+            <div class="detail-badges">
+              <span class="badge badge-ai">IA Aplicada</span>
+              <span class="badge badge-completed">Concluído</span>
+            </div>
+
+            <p class="detail-lead">
+              <strong>AcademIA</strong> é um assistente que responde perguntas
+              sobre PDFs de regulamentos, editais e matrizes curriculares. O
+              usuário envia o documento, faz perguntas em linguagem natural e
+              recebe o trecho exato que responde à pergunta, com o título da
+              seção e a página de origem.
+            </p>
+            <p class="detail-lead">
+              A resposta é <strong>extraída literalmente</strong> do documento,
+              não gerada por um modelo de linguagem. A escolha é deliberada: sem
+              um LLM no caminho, o sistema é imune a prompt injection por
+              construção e roda inteiramente offline, sem enviar documento
+              institucional para nenhum serviço externo.
+            </p>
+          </header>
+
+          <div class="prose">
+            <h2>Como funciona</h2>
+            <p>
+              A ideia é simples: em vez de o sistema escrever uma resposta, ele
+              <strong>acha o trecho do documento que já responde</strong> e
+              mostra esse trecho, com a origem. São cinco passos:
+            </p>
+            <ol>
+              <li>
+                <strong>Você envia o PDF.</strong> O sistema lê o texto de dentro
+                dele e descarta o que não é conteúdo, como cabeçalho, numeração
+                de página e rodapé.
+              </li>
+              <li>
+                <strong>O texto é dividido em trechos.</strong> O corte respeita
+                as seções do próprio documento — capítulos, artigos, itens — em
+                vez de partir o texto no meio de uma frase. É como folhear um
+                livro: em vez de guardar o livro inteiro, guardamos as partes
+                que interessam.
+              </li>
+              <li>
+                <strong>Cada trecho ganha uma etiqueta de significado.</strong> O
+                sistema resume o assunto de cada trecho em uma lista de números.
+                Assim dá para comparar dois textos sem precisar lê-los: etiquetas
+                parecidas significam trechos parecidos.
+              </li>
+              <li>
+                <strong>A pergunta é comparada com as etiquetas.</strong> A
+                pergunta também vira etiqueta, e o sistema procura os trechos
+                mais próximos dela. Um segundo modelo então confere esses
+                candidatos um a um e coloca em ordem o que de fato responde à
+                pergunta.
+              </li>
+              <li>
+                <strong>Se a resposta não for clara, o sistema avisa.</strong>
+                Três verificações conferem se o trecho encontrado realmente
+                contém a resposta. Se não contiver, o sistema prefere dizer que
+                não encontrou a arriscar inventar algo.
+              </li>
+            </ol>
+
+            <h3>Detalhes técnicos</h3>
+            <p>
+              Os modelos e valores usados em cada etapa, para quem quiser
+              conferir a implementação:
+            </p>
+            <ul>
+              <li>
+                <strong>Extração.</strong> <code>pypdf</code>, leitura linha a
+                linha descartando cabeçalhos e números de página.
+              </li>
+              <li>
+                <strong>Segmentação.</strong> Detecção heurística de títulos de
+                seção — linhas em caixa alta com até oito palavras — antes do
+                corte.
+              </li>
+              <li>
+                <strong>Trechos.</strong> 1.000 caracteres com sobreposição de
+                200, priorizando quebras de parágrafo, linha e pontuação. O
+                título da seção entra junto do texto do trecho.
+              </li>
+              <li>
+                <strong>Embeddings.</strong>
+                <code>intfloat/multilingual-e5-base</code>, vetores de 768
+                dimensões.
+              </li>
+              <li>
+                <strong>Busca.</strong> Similaridade de cosseno com NumPy,
+                retornando os dez trechos mais próximos.
+              </li>
+              <li>
+                <strong>Reordenação.</strong>
+                <code>BAAI/bge-reranker-v2-m3</code> como cross-encoder; apenas
+                o primeiro resultado é usado.
+              </li>
+              <li>
+                <strong>Validação.</strong> Três portões: score do rerank,
+                cobertura lexical do trecho e margem entre os dois primeiros
+                resultados.
+              </li>
+            </ul>
+
+            <h2>Decisões de engenharia</h2>
+            <ul>
+              <li>
+                <strong>Recusar em vez de alucinar.</strong> Quando a validação
+                reprova, o usuário recebe o motivo da recusa (
+                <code>score baixo</code>, <code>baixa cobertura</code> ou
+                <code>ambiguidade</code>) em vez de uma resposta aproximada.
+              </li>
+              <li>
+                <strong>Chunking com noção de estrutura.</strong> Em vez de
+                cortar o documento inteiro às cegas, os trechos respeitam as
+                seções do documento e carregam o título junto do texto.
+              </li>
+              <li>
+                <strong>Cascata de dois modelos.</strong> O bi-encoder faz a
+                busca ampla e barata; o cross-encoder faz a reordenação
+                precisa. Só o primeiro resultado do rerank é usado.
+              </li>
+              <li>
+                <strong>100% local.</strong> Dois modelos abertos executados na
+                própria máquina, sem API de terceiros e sem GPU.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Stack e Acesso -->
+      <section
+        id="projeto-rag-stack"
+        aria-labelledby="projeto-rag-stack-titulo"
+      >
+        <div class="container">
+          <h2 class="section-title" id="projeto-rag-stack-titulo">
+            Tecnologias utilizadas
+          </h2>
+
+          <div class="prose">
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">Uvicorn</span>
+              <span class="tech-tag">sentence-transformers</span>
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">scikit-learn</span>
+              <span class="tech-tag">NumPy</span>
+              <span class="tech-tag">pypdf</span>
+              <span class="tech-tag">LangChain Text Splitters</span>
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Embeddings</span>
+              <span class="tech-tag">RAG</span>
+              <span class="tech-tag">Cross-encoder</span>
+            </div>
+
+            <p>
+              Projeto acadêmico desenvolvido em equipe. O código está
+              disponível publicamente.
+            </p>
+
+            <div class="detail-actions">
+              <a
+                href="https://github.com/ferinoSZ/AcademIA"
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ver código no GitHub</a
+              >
+              <a href="../../index.html#projetos" class="btn btn-outline"
+                >Voltar para Projetos</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-text">
+          © 2026 Wesley Ferino de Carvalho. Desenvolvido com foco em
+          Inteligência Artificial aplicada a sistemas reais.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Script JavaScript -->
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

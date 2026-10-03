@@ -1,0 +1,121 @@
+/* Estilos responsivos - Mobile-First */
+/* Comentários em português-BR conforme Constituição IV */
+/* Estratégia única: apenas media queries min-width, com a base mobile em styles.css */
+
+/* Telas médias: 480px - 767px */
+@media (min-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  /* Contato: três botões em uma única fileira, centralizados e com o mesmo tamanho.
+     flex-wrap mantém a fileira única e só reorganiza se faltar espaço. */
+  .contact-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+
+  .contact-link {
+    flex: 1 1 var(--contact-link-min-width);
+    max-width: var(--contact-link-max-width);
+  }
+
+  .project-card {
+    padding: var(--spacing-xl);
+  }
+}
+
+/* Tablet: 768px - 1023px */
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .container {
+    padding: 0 var(--spacing-xl);
+  }
+
+  /* Navegação em linha: o menu mobile dá lugar ao menu sempre visível */
+  .nav-menu {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-lg);
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-item {
+    width: auto;
+  }
+
+  .nav-link {
+    display: inline-block;
+    width: auto;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  /* Hero */
+  .hero-content {
+    max-width: 700px;
+  }
+
+  .hero-name {
+    font-size: var(--font-size-4xl);
+  }
+
+  /* Projetos - grid de 2 colunas */
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  /* Página de detalhe do projeto */
+  .detail-title {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+/* Desktop: 1024px ou mais */
+@media (min-width: 1024px) {
+  section {
+    padding: calc(var(--spacing-3xl) + 1rem) 0;
+  }
+
+  .container {
+    padding: 0 var(--spacing-2xl);
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 90vh;
+    min-height: 90dvh;
+  }
+
+  .hero-name {
+    font-size: calc(var(--font-size-4xl) + 0.5rem);
+  }
+
+  /* Projetos - mantém 2 colunas com mais espaço entre os cards */
+  .projects-grid {
+    gap: var(--spacing-2xl);
+  }
+}

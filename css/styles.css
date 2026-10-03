@@ -1,0 +1,754 @@
+/* Estilos principais - Portfólio Wesley Ferino */
+/* Comentários em português-BR conforme Constituição IV */
+
+/* Reset e base */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Cores */
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-soft: rgba(37, 99, 235, 0.1);
+  --color-secondary: #0f172a;
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #4b5563;
+  --color-background: #ffffff;
+  --color-background-alt: #f8fafc;
+  --color-border: #e5e7eb;
+  --color-success: #047857;
+  --color-success-soft: rgba(4, 120, 87, 0.1);
+  --color-warning: #92400e;
+  --color-warning-soft: rgba(146, 64, 14, 0.1);
+
+  /* Tipografia */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+
+  /* Espaçamentos */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Layout */
+  --header-height: 3.5rem;
+  --container-max-width: 1200px;
+  --about-max-width: 900px;
+  --contact-max-width: 700px;
+  --contact-link-min-width: 8.5rem;
+  --contact-link-max-width: 12rem;
+
+  /* Sombras, bordas e transições */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --border-radius: 0.5rem;
+  --border-radius-pill: 999px;
+  --transition-base: 0.2s ease-in-out;
+}
+
+/* Documento: scroll-padding-top compensa o header fixo nas navegações por âncora */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + var(--spacing-md));
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tipografia */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  color: var(--color-secondary);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Listas */
+ul {
+  list-style: none;
+}
+
+/* Container e seções */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+section {
+  padding: var(--spacing-3xl) 0;
+}
+
+section:nth-child(even) {
+  background-color: var(--color-background-alt);
+}
+
+/* Título de seção - eixo de alinhamento único (esquerda) em todas as seções */
+.section-title {
+  margin-bottom: var(--spacing-lg);
+  text-align: left;
+}
+
+/* Botões */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius);
+}
+
+/* Acessibilidade - redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Header e navegação */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  min-height: var(--header-height);
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-height: var(--header-height);
+  padding: var(--spacing-xs) 0;
+}
+
+.nav-logo {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.nav-link {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-align: left;
+  border-radius: var(--border-radius);
+  transition: color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+  color: var(--color-primary);
+  background-color: var(--color-background-alt);
+}
+
+/* Menu mobile - base mobile-first; expandido a partir de 768px em responsive.css */
+.nav-toggle {
+  display: block;
+  padding: var(--spacing-xs);
+  color: var(--color-secondary);
+  font-size: var(--font-size-xl);
+  line-height: 1;
+  /* Fallback de fontes para o glifo do menu ficar consistente entre sistemas */
+  font-family: "Segoe UI Symbol", "Apple Symbols", "Noto Sans Symbols 2",
+    var(--font-family-base);
+}
+
+.nav-toggle-icon {
+  display: block;
+  line-height: 1;
+}
+
+.nav-menu {
+  position: absolute;
+  top: calc(100% + var(--spacing-xs));
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  width: auto;
+  min-width: 200px;
+  /* Limita a largura para não gerar overflow horizontal em telas estreitas */
+  max-width: calc(100vw - 2 * var(--spacing-md));
+  padding: var(--spacing-sm);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base),
+    transform var(--transition-base),
+    visibility var(--transition-base);
+}
+
+.nav-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+/* Trava a rolagem enquanto o menu mobile está aberto */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(
+    180deg,
+    var(--color-background) 0%,
+    var(--color-background-alt) 100%
+  );
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-name {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero-info {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.hero-description {
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* Botões */
+.btn {
+  display: inline-block;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  text-align: center;
+  transition: background-color var(--transition-base),
+    color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-primary-dark);
+  color: var(--color-background);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Sobre */
+.about-content {
+  max-width: var(--about-max-width);
+  margin: 0 auto;
+}
+
+.about-text {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.skills {
+  padding: var(--spacing-xl);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.skills-title {
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-xl);
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+/* Componente único de etiquetas - usado por skills, tecnologias e badges */
+.skill-tag,
+.tech-tag,
+.badge {
+  display: inline-block;
+  padding: 0.25rem var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  line-height: 1.5;
+  transition: background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.skill-tag {
+  background-color: var(--color-background-alt);
+  color: var(--color-text-primary);
+}
+
+.skill-tag:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-background);
+}
+
+.tech-tag {
+  background-color: var(--color-background-alt);
+  color: var(--color-text-secondary);
+}
+
+/* Badges de destaque de IA e de status */
+.badge {
+  padding: 0.25rem var(--spacing-md);
+  border-color: transparent;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.badge-ai {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+.badge-completed {
+  background-color: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.badge-development {
+  background-color: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+/* Projetos */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* Ancoragem para o link esticado do título cobrir o card inteiro */
+  position: relative;
+  padding: var(--spacing-lg);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.project-title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.project-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.project-content {
+  flex-grow: 1;
+  margin-bottom: var(--spacing-lg);
+}
+
+.project-description {
+  margin-bottom: var(--spacing-md);
+}
+
+.project-context,
+.project-goal {
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+.project-tech h4 {
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+/* Link do título do projeto. O pseudo-elemento estende a área clicável para
+   todo o card sem aninhar links. O título mantém a cor de heading até o hover. */
+.project-link {
+  color: var(--color-secondary);
+}
+
+.project-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.project-card:hover .project-link,
+.project-card:focus-within .project-link {
+  color: var(--color-primary);
+}
+
+/* Dica de continuação: deixa explícito que o card leva a algum lugar */
+.project-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-lg);
+  margin-bottom: 0;
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.project-cta-arrow {
+  transition: transform var(--transition-base);
+}
+
+.project-card:hover .project-cta-arrow {
+  transform: translateX(3px);
+}
+
+/* Projeto sem página de detalhe: mantém a mesma linguagem visual, sem prometer navegação */
+.project-cta-muted {
+  color: var(--color-text-secondary);
+}
+
+.project-card:hover .project-cta-arrow {
+  transform: none;
+}
+
+/* Contato */
+.contact-content {
+  max-width: var(--contact-max-width);
+  margin: 0 auto;
+}
+
+.contact-description {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* Contato - base mobile: botões empilhados e centralizados.
+   A fileira única com três botões iguais é aplicada a partir de 480px em responsive.css. */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  max-width: var(--contact-link-max-width);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  transition: background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.contact-link:hover,
+.contact-link:focus {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-background);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--font-size-xl);
+  height: var(--font-size-xl);
+  color: var(--color-primary);
+}
+
+.contact-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.contact-link:hover .contact-icon,
+.contact-link:focus .contact-icon {
+  color: var(--color-background);
+}
+
+/* Rodapé */
+.footer {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-secondary);
+  text-align: center;
+}
+
+.footer-text {
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--font-size-sm);
+}
+
+/* Página de detalhe do projeto */
+/* Não há hero nesta página para cobrir o header fixo, por isso o
+   espaçamento superior é calculado somando a altura do header. */
+.project-detail {
+  padding-top: calc(var(--header-height) + var(--spacing-2xl));
+}
+
+.detail-header {
+  max-width: var(--about-max-width);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.detail-title {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.detail-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+}
+
+.detail-lead {
+  font-size: var(--font-size-lg);
+  margin-bottom: 0;
+}
+
+.detail-lead + .detail-lead {
+  margin-top: var(--spacing-md);
+}
+
+.prose {
+  max-width: var(--about-max-width);
+}
+
+.prose > * + * {
+  margin-top: var(--spacing-md);
+}
+
+.prose h2 {
+  font-size: var(--font-size-xl);
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Subtítulo de subsection dentro do texto corrido (ex.: "Detalhes técnicos") */
+.prose h3 {
+  font-size: var(--font-size-lg);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.prose ol,
+.prose ul {
+  padding-left: var(--spacing-lg);
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose li + li {
+  margin-top: var(--spacing-sm);
+}
+
+.prose code {
+  padding: 0.1rem 0.35rem;
+  background-color: var(--color-background-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 0.9em;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-2xl);
+}
+
+/* Botão secundário - ação alternativa quando a principal já é um filled */
+.btn-outline {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}

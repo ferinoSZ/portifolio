@@ -1,0 +1,44 @@
+# Normalizacao de fim de linha entre Windows e Linux/macOS.
+# O repositorio guarda tudo com LF; no checkout, arquivos de script do Windows
+# voltam com CRLF. Isso evita diff gigante no primeiro commit e Mantem o site
+# identico em qualquer sistema.
+
+# Padrao do projeto: LF para tudo que e texto
+* text=auto eol=lf
+
+# Tipos explicitos (o padrao acima ja cobre, mas deixa a intencao visivel)
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.svg  text eol=lf
+
+# Scripts do Windows preferem CRLF para nao quebrar a execucao
+*.ps1  text eol=crlf
+*.psm1 text eol=crlf
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+
+# Arquivos de configuracao do Git devem ficar sem conversao
+.gitattributes text eol=lf
+.gitignore     text eol=lf
+
+# Binarios: nunca converter nem normalizar
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.avif binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.mp4   binary
+*.webm  binary

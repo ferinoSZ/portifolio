@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfólio de Wesley Ferino de Carvalho - Desenvolvedor de Software com foco em Inteligência Artificial aplicada a sistemas reais."
+    />
+    <title>
+      Wesley Ferino - Desenvolvedor de Software | IA aplicada a sistemas
+    </title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <!-- Cabeçalho e Navegação -->
+    <header class="header">
+      <div class="container">
+        <nav class="nav" aria-label="Navegação principal">
+          <a href="#inicio" class="nav-logo">Wesley Ferino</a>
+
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            aria-label="Abrir menu de navegação"
+          >
+            <span class="nav-toggle-icon" aria-hidden="true">☰</span>
+          </button>
+
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item">
+              <a href="#inicio" class="nav-link">Início</a>
+            </li>
+            <li class="nav-item">
+              <a href="#sobre" class="nav-link">Sobre</a>
+            </li>
+            <li class="nav-item">
+              <a href="#projetos" class="nav-link">Projetos</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contato" class="nav-link">Contato</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+      <!-- Seção Hero/Início -->
+      <section id="inicio" class="hero" aria-labelledby="inicio-titulo">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-name" id="inicio-titulo">Wesley Ferino de Carvalho</h1>
+            <p class="hero-info">
+              21 anos | 6º período de Engenharia de Software - UNIVILLE
+            </p>
+            <p class="hero-description">
+              Desenvolvedor de Software com foco em
+              <strong>Inteligência Artificial aplicada a sistemas reais</strong>.
+              Curioso por natureza, comprometido com soluções práticas, flexível
+              diante do que ainda não domina e sempre em busca de aprendizado
+              contínuo.
+            </p>
+            <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Sobre -->
+      <section id="sobre" class="about" aria-labelledby="sobre-titulo">
+        <div class="container">
+          <h2 class="section-title" id="sobre-titulo">Sobre mim</h2>
+
+          <div class="about-content">
+            <div class="about-text">
+              <p>
+                Sempre tive interesse por tecnologia, computadores e videogames,
+                mas inicialmente não imaginava seguir carreira em programação. O
+                contato com programação durante a escola despertou meu
+                interesse, que foi evoluindo ao longo do tempo.
+              </p>
+              <p>
+                Comecei minha trajetória pelo <strong>Frontend</strong>,
+                explorando a criação de interfaces e experiência do usuário.
+                Depois, meu interesse se expandiu para a integração entre
+                <strong>Software e Hardware</strong>, buscando compreender como
+                os sistemas se conectam com o mundo físico.
+              </p>
+              <p>
+                Foi na <strong>Inteligência Artificial</strong> que encontrei a
+                área que mais me motiva. A possibilidade de utilizar IA para
+                resolver problemas reais e criar sistemas mais inteligentes é o
+                que me impulsiona a aprender e evoluir constantemente.
+              </p>
+              <p>
+                Busco sempre unir teoria e prática, desenvolvendo soluções
+                simples, claras e úteis, com foco em aplicar IA de forma
+                concreta em sistemas de software. Sou flexível diante do que
+                ainda não domina: toda tecnologia nova é uma ocasião para
+                aprender rápido.
+              </p>
+            </div>
+
+            <div class="skills">
+              <h3 class="skills-title">Tecnologias e Conhecimentos</h3>
+              <div class="skills-grid">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Flask</span>
+                <span class="skill-tag">scikit-learn</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">APIs</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">CSS</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">GitHub</span>
+                <span class="skill-tag">Embeddings</span>
+                <span class="skill-tag">RAG</span>
+                <span class="skill-tag">Machine Learning</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Projetos -->
+      <section id="projetos" class="projects" aria-labelledby="projetos-titulo">
+        <div class="container">
+          <h2 class="section-title" id="projetos-titulo">Projetos</h2>
+
+          <div class="projects-grid">
+            <!-- Projeto 1: Processamento de PDFs com RAG -->
+            <article class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">
+                  <a class="project-link" href="projetos/rag/"
+                    >Processamento de PDFs com RAG</a
+                  >
+                </h3>
+                <div class="project-badges">
+                  <span class="badge badge-ai">IA Aplicada</span>
+                  <span class="badge badge-completed">Concluído</span>
+                </div>
+              </div>
+
+              <div class="project-content">
+                <p class="project-description">
+                  Sistema no qual o usuário fornece um PDF e realiza perguntas
+                  utilizando linguagem natural. O sistema utiliza
+                  <strong>embeddings</strong> para localizar informações
+                  semanticamente relacionadas ao conteúdo do documento e fornecer
+                  respostas precisas e contextualizadas ao usuário.
+                </p>
+                <p class="project-context">
+                  Desenvolvido com foco em documentos relacionados ao ambiente
+                  universitário.
+                </p>
+              </div>
+
+              <div class="project-tech">
+                <h4>Tecnologias utilizadas:</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">Chunking</span>
+                  <span class="tech-tag">Embeddings</span>
+                  <span class="tech-tag">RAG</span>
+                </div>
+              </div>
+
+              <p class="project-cta">
+                Ver projeto <span class="project-cta-arrow" aria-hidden="true">→</span>
+              </p>
+            </article>
+
+            <!-- Projeto 2: Sistema Financeiro com IA -->
+            <article class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">Sistema Financeiro com IA</h3>
+                <div class="project-badges">
+                  <span class="badge badge-ai">IA Aplicada</span>
+                  <span class="badge badge-development"
+                    >Em Desenvolvimento</span
+                  >
+                </div>
+              </div>
+
+              <div class="project-content">
+                <p class="project-description">
+                  Sistema financeiro em desenvolvimento com integração à
+                  <strong>API do Telegram</strong>. Utiliza
+                  <strong>embeddings</strong> para realizar a categorização
+                  automática de determinados gastos, além de permitir a geração
+                  de relatórios organizados por período e categoria.
+                </p>
+                <p class="project-goal">
+                  Visa automatizar o controle financeiro de forma inteligente,
+                  reduzindo o trabalho manual na organização de despesas.
+                </p>
+              </div>
+
+              <div class="project-tech">
+                <h4>Tecnologias utilizadas:</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">Telegram API</span>
+                  <span class="tech-tag">Embeddings</span>
+                  <span class="tech-tag">Machine Learning</span>
+                </div>
+              </div>
+
+              <p class="project-cta project-cta-muted">
+                Página em breve
+                <span class="project-cta-arrow" aria-hidden="true">→</span>
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção Contato -->
+      <section id="contato" class="contact" aria-labelledby="contato-titulo">
+        <div class="container">
+          <h2 class="section-title" id="contato-titulo">Contato</h2>
+
+          <div class="contact-content">
+            <p class="contact-description">
+              Interessado em conversar sobre projetos, oportunidades ou trocar
+              ideias sobre IA e desenvolvimento de software? Estou aberto a
+              novas oportunidades e colaborações. Entre em contato!
+            </p>
+
+            <div class="contact-links">
+              <a
+                href="mailto:weslleycontas09@gmail.com"
+                class="contact-link"
+                aria-label="Enviar email para Wesley Ferino"
+              >
+                <span class="contact-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    focusable="false"
+                  >
+                    <rect x="2.5" y="5" width="19" height="14" rx="2"></rect>
+                    <path d="m3 7 8.1 5.4a1.4 1.4 0 0 0 1.6 0L21 7"></path>
+                  </svg>
+                </span>
+                <span>Email</span>
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/ferinosz/"
+                class="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visitar perfil do LinkedIn de Wesley Ferino"
+              >
+                <span class="contact-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    focusable="false"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                    <path d="M8 11.5V16"></path>
+                    <path d="M8 16h2.2"></path>
+                    <path d="M13 16v-2.6a1.8 1.8 0 0 1 3.6 0V16"></path>
+                  </svg>
+                </span>
+                <span>LinkedIn</span>
+              </a>
+
+              <a
+                href="https://github.com/ferinoSZ"
+                class="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visitar perfil do GitHub de Wesley Ferino"
+              >
+                <span class="contact-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    focusable="false"
+                  >
+                    <path d="m9 8-4 4 4 4"></path>
+                    <path d="m15 8 4 4-4 4"></path>
+                  </svg>
+                </span>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-text">
+          © 2026 Wesley Ferino de Carvalho. Desenvolvido com foco em
+          Inteligência Artificial aplicada a sistemas reais.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Script JavaScript -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
