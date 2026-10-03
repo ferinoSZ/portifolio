@@ -58,19 +58,6 @@ portifolio/
 ├── specs/                # Especificação, plano, tarefas e checklist de validação
 └── README.md
 ```
-## Validação rápida
-
-Antes de publicar, conferir:
-
-1. **Navegação** — os links do menu levam a cada seção e o header fixo não cobre o título.
-2. **Menu mobile** — abre e fecha ao tocar no botão, ao tocar fora e ao pressionar ESC.
-3. **Teclado** — percorra a página com Tab e confira o foco visível; o menu fecha com ESC.
-4. **Contato** — LinkedIn e GitHub abrem em nova aba com `rel="noopener noreferrer"`; o email abre o cliente de e-mail.
-5. **Responsividade** — sem rolagem horizontal entre 320px e 1920px; a fileira de Contato vira coluna abaixo de 480px.
-6. **Acessibilidade** — respeito a `prefers-reduced-motion` e contraste suficiente nos textos.
-7. **Console** — sem erros nem avisos no console do navegador.
-
-O checklist completo está em `specs/001-portfolio-website/quickstart.md`.
 
 ## Contatos
 
